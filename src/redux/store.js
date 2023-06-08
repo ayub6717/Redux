@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import modalReducer from './slices/modalSlice';
 import axios from 'axios';
+import { api } from '../api/api';
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -27,7 +28,10 @@ const store = configureStore({
   reducer: {
     modal: modalReducer,
     posts: postsSlice.reducer,
+    [api.reducerPath]: api.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 export default store;
