@@ -1,9 +1,19 @@
 import React from 'react';
+import { useGetSlidersQuery } from '../redux/slices/apiSlice';
 import Slider from '../components/Slider';
 
-const SliderList = ({ sliders }) => {
-  const displayedSliders = sliders?.response?.records?.data?.slice(0, 10);
-  console.log(displayedSliders);
+const SliderList = () => {
+  const { data: sliders, isLoading, isError } = useGetSlidersQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred while fetching sliders.</div>;
+  }
+
+  const displayedSliders = sliders?.response?.records?.data?.slice(0, 3);
 
   if (!displayedSliders?.length) {
     return <div>No sliders available.</div>;
