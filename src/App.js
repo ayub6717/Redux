@@ -1,18 +1,23 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import ModalComponent from './components/ModalComponent';
-// import Posts from './sections/Posts';
-import PostsTwo from './sections/PostsTwo';
+import { useGetSlidersQuery } from './redux/slices/apiSlice';
+import SliderList from './sections/SliderList';
 
-const App = () => {
+function App() {
+  const { data: sliders, isLoading, isError } = useGetSlidersQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred while fetching sliders.</div>;
+  }
+
   return (
-    <Provider store={store}>
-      <ModalComponent />
-      {/* <Posts /> */}
-      <PostsTwo />
-    </Provider>
+    <div>
+       <SliderList sliders={sliders} />
+    </div>
   );
-};
+}
 
 export default App;
