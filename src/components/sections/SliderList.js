@@ -1,6 +1,6 @@
 import React from 'react';
-import { useGetSlidersQuery } from '../redux/slices/apiSlice';
-import Slider from '../components/Slider';
+import { useGetSlidersQuery } from '../../services/api';
+import Slider from '../common/Slider';
 
 const SliderList = () => {
   const { data: sliders, isLoading, isError } = useGetSlidersQuery();

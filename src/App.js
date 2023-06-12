@@ -1,5 +1,5 @@
 import React from 'react';
-import SliderList from './sections/SliderList';
+import SliderList from './components/sections/SliderList';
 
 function App() {
   return (
