@@ -1,5 +1,6 @@
 import React from 'react';
-import Slider from './components/slider/Slider';
+import '../src/App.css'
+import Slider from './redux/slices/SliderSlice';
 
 function App() {
   return (

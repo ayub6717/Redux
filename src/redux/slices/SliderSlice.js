@@ -1,12 +1,15 @@
 import React from 'react';
-import { useGetSlidersQuery } from '../../redux/api/apiSlice';
-import Slide from '../common/Slide';
+import { useGetSlidersQuery } from '../api/sliderApi';
+import Slide from '../../components/common/Slide';
+import CardSkeleton from '../../components/Skeleton/CardSkeleton';
 
 const Slider = () => {
     const { data: sliders, isLoading, isError } = useGetSlidersQuery();
   
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <div>
+        <CardSkeleton />
+      </div>;
     }
   
     if (isError) {
