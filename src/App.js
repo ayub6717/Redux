@@ -1,10 +1,10 @@
 import React from 'react';
-import SliderList from './components/sections/SliderList';
+import Slider from './components/slider/Slider';
 
 function App() {
   return (
     <div>
-       <SliderList />
+       <Slider />
     </div>
   );
 }

@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/store/configureStore';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { ApiProvider } from '@reduxjs/toolkit/query/react';
-import { api } from './services/api';
+import { configureStore } from '@reduxjs/toolkit';
+import { api } from './redux/api/apiSlice';
 import App from './App';
 
+const store = configureStore({
+  reducer: {
+    [api.reducerPath]: api.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
+});
+
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <ApiProvider api={api}>
-          <App />
-        </ApiProvider>
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
